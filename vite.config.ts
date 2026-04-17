@@ -6,6 +6,10 @@ import {defineConfig, loadEnv} from 'vite';
 export default defineConfig(({mode}) => {
   const env = loadEnv(mode, '.', '');
   return {
+    // 加上這行 base 設定，前後都要有斜線
+    base: '/music-app/', 
+    plugins: [react(), tailwindcss()],
+    // ...底下維持原本即可
     plugins: [react(), tailwindcss()],
     define: {
       'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
