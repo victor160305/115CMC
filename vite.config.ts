@@ -9,8 +9,6 @@ export default defineConfig(({mode}) => {
     // 加上這行 base 設定，前後都要有斜線
     base: '/115CMC/', 
     plugins: [react(), tailwindcss()],
-    // ...底下維持原本即可
-    plugins: [react(), tailwindcss()],
     define: {
       'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
     },
