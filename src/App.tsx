@@ -9,7 +9,7 @@ const LOADING_IMAGES = [
   "https://picsum.photos/seed/orchestra/300/300"
 ];
 
-function LoadingSequencePage({ onNext }: { onNext: () => void }) {
+function LoadingSequencePage({ onNext }: { key?: string; onNext: () => void }) {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -112,7 +112,7 @@ function LoadingSequencePage({ onNext }: { onNext: () => void }) {
   );
 }
 
-function PopupPage({ onNext }: { onNext: () => void }) {
+function PopupPage({ onNext }: { key?: string; onNext: () => void }) {
   const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
@@ -215,7 +215,7 @@ const MUSICS = [
   }
 ];
 
-function MusicListPage() {
+function MusicListPage({ key }: { key?: string }) {
   const [selectedId, setSelectedId] = useState<number | null>(null);
 
   return (
