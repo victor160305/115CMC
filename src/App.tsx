@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Music, ChevronRight, X, PlayCircle } from 'lucide-react';
+import { Music, ChevronRight, X, PlayCircle, GraduationCap, Users, HeartHandshake, ChevronDown } from 'lucide-react';
 
 const LOADING_IMAGES = [
   "https://picsum.photos/seed/classical/300/300",
@@ -52,7 +52,8 @@ function LoadingSequencePage({ onNext }: { key?: string; onNext: () => void }) {
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
       >
-        國樂社畢演會曲目表
+        115級白沙國樂社
+        <br />畢演會節目單
       </motion.h1>
       
       <div className="relative flex items-center justify-center mb-12">
@@ -168,13 +169,13 @@ function PopupPage({ onNext }: { key?: string; onNext: () => void }) {
               </div>
               <h3 className="text-2xl font-bold mb-3 relative z-10">準備好聆聽了嗎？</h3>
               <p className="text-slate-300 mb-8 leading-relaxed relative z-10">
-                接下來，我們將為您介紹幾首經典的古典樂曲。請開啟您的音量，享受這趟音樂之旅。
+                接下來，我們將為您介紹今天的精彩演出內容、畢業生與演出陣容。請開啟您的音量，享受這趟音樂之旅。
               </p>
               <button 
                 onClick={onNext}
                 className="w-full py-4 bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 rounded-xl font-bold tracking-wide transition-all shadow-lg shadow-indigo-500/25 relative z-10"
               >
-                進入樂曲介紹
+                進入節目單
               </button>
             </motion.div>
           </motion.div>
@@ -184,50 +185,83 @@ function PopupPage({ onNext }: { key?: string; onNext: () => void }) {
   );
 }
 
-const MUSICS = [
-  {
-    id: 1,
-    title: "命運交響曲",
-    composer: "貝多芬",
-    description: "《C小調第五交響曲》，作品67，是路德維希·范·貝多芬於1804年至1808年間創作的四樂章交響曲。這首交響曲是古典音樂中最受歡迎、最著名的作品之一，其開頭的四個音符被稱為「命運的敲門聲」。",
-    tags: ["古典", "交響樂", "震撼"]
-  },
-  {
-    id: 2,
-    title: "G大調弦樂小夜曲",
-    composer: "莫札特",
-    description: "《G大調弦樂小夜曲》，K. 525，是沃夫岡·阿瑪迪斯·莫札特於1787年創作的一首小夜曲。這首作品是莫札特最著名的作品之一，旋律輕快優美，充滿了維也納的古典氣息。",
-    tags: ["弦樂", "輕快", "經典"]
-  },
-  {
-    id: 3,
-    title: "天鵝湖",
-    composer: "柴可夫斯基",
-    description: "《天鵝湖》，作品20，是彼得·伊里奇·柴可夫斯基於1875年至1876年間創作的芭蕾舞劇音樂。這部作品充滿了浪漫主義色彩，旋律優美動人，是芭蕾舞劇的巔峰之作。",
-    tags: ["芭蕾舞", "浪漫", "管弦樂"]
-  },
-  {
-    id: 4,
-    title: "月光",
-    composer: "德布西",
-    description: "《月光》（Clair de lune）是法國作曲家克勞德·德布西《貝加馬斯克組曲》的第三樂章。這首鋼琴曲以其夢幻般的意境和細膩的音色變化而聞名，是印象派音樂的代表作。",
-    tags: ["鋼琴", "印象派", "柔美"]
-  }
+// -------------------------------------------------------------
+// 【 頁籤一：畢業生介紹 】
+// -------------------------------------------------------------
+const GRADUATES = [
+  { id: 1, name: "林隆溫", instrument: "待補", description: "林隆溫的介紹文字即將在此更新...", photo: "https://picsum.photos/seed/grad1/400/400" },
+  { id: 2, name: "謝菁芸", instrument: "待補", description: "謝菁芸的介紹文字即將在此更新...", photo: "https://picsum.photos/seed/grad2/400/400" },
+  { id: 3, name: "蘇昱豪", instrument: "待補", description: "蘇昱豪的介紹文字即將在此更新...", photo: "https://picsum.photos/seed/grad3/400/400" },
+  { id: 4, name: "鍾翔蓁", instrument: "待補", description: "鍾翔蓁的介紹文字即將在此更新...", photo: "https://picsum.photos/seed/grad4/400/400" }
 ];
+
+function GraduatesPage({ key }: { key?: string }) {
+  return (
+    <motion.div 
+      className="flex flex-col h-full bg-slate-900 text-white overflow-y-auto pb-24"
+      initial={{ opacity: 0, x: 20 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: -20 }}
+      transition={{ duration: 0.3 }}
+    >
+      <div className="p-6 pt-12 sticky top-0 bg-slate-900/90 backdrop-blur-md z-10 border-b border-slate-800/50">
+        <h2 className="text-2xl font-bold tracking-wide">畢業生介紹</h2>
+        <p className="text-indigo-400 text-sm mt-1">115級白沙國樂社 畢業生</p>
+      </div>
+      <div className="p-6 space-y-6">
+        {GRADUATES.map((grad, i) => (
+          <motion.div 
+            key={grad.id} 
+            className="bg-slate-800/80 rounded-2xl overflow-hidden border border-slate-700/50 shadow-lg"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: i * 0.1 }}
+          >
+            <div className="h-56 bg-slate-700 relative">
+              <img src={grad.photo} alt={grad.name} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+              <span className="absolute bottom-4 right-4 px-3 py-1 bg-indigo-600/90 text-white text-xs rounded-full font-medium shadow-md">
+                {grad.instrument}
+              </span>
+            </div>
+            <div className="p-5 pt-3">
+              <h3 className="text-xl font-bold mb-2">{grad.name}</h3>
+              <p className="text-slate-300 text-sm leading-relaxed">{grad.description}</p>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </motion.div>
+  );
+}
+
+// -------------------------------------------------------------
+// 【 頁籤二：樂曲介紹 】
+// -------------------------------------------------------------
+const MUSIC_TITLES = ["天山", "丟丟銅", "竹歌", "雨", "神遊", "童年", "節日鑼鼓", "Tequila"];
+
+const MUSICS = MUSIC_TITLES.map((title, index) => ({
+  id: index + 1,
+  title,
+  composer: "作曲家待補",
+  description: `《${title}》的詳細樂曲介紹內容即將在此更新，敬請期待。`,
+  tags: ["國樂"]
+}));
 
 function MusicListPage({ key }: { key?: string }) {
   const [selectedId, setSelectedId] = useState<number | null>(null);
 
   return (
     <motion.div 
-      className="flex flex-col h-full bg-slate-900 text-white overflow-y-auto pb-10"
-      initial={{ opacity: 0, x: 50 }}
+      className="flex flex-col h-full bg-slate-900 text-white overflow-y-auto pb-24"
+      initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: -50 }}
+      exit={{ opacity: 0, x: -20 }}
+      transition={{ duration: 0.3 }}
     >
       <div className="p-6 pt-12 sticky top-0 bg-slate-900/90 backdrop-blur-md z-10 border-b border-slate-800/50">
         <h2 className="text-2xl font-bold tracking-wide">樂曲介紹</h2>
-        <p className="text-indigo-400 text-sm mt-1">探索經典名曲的背後故事</p>
+        <p className="text-indigo-400 text-sm mt-1">探索今日演出曲目的背後故事</p>
       </div>
 
       <div className="p-6 space-y-4">
@@ -290,6 +324,197 @@ function MusicListPage({ key }: { key?: string }) {
   );
 }
 
+// -------------------------------------------------------------
+// 【 頁籤三：演出人員 】
+// -------------------------------------------------------------
+const DEFAULT_SECTIONS = [
+  { role: "指揮", members: "人員待補" },
+  { role: "吹管樂器", members: "梆笛：待補\n曲笛：待補\n笙：待補\n嗩吶：待補" },
+  { role: "拉弦樂器", members: "高胡：待補\n二胡：待補\n中胡：待補\n大提琴：待補\n低音提琴：待補" },
+  { role: "彈撥樂器", members: "柳琴：待補\n琵琶：待補\n揚琴：待補\n中阮：待補\n大阮：待補\n古箏：待補" },
+  { role: "打擊樂器", members: "排鼓：待補\n定音鼓：待補\n其他打擊：待補" }
+];
+
+const PERFORMERS = MUSIC_TITLES.map((title, index) => ({
+  id: index + 1,
+  title,
+  sections: DEFAULT_SECTIONS
+}));
+
+function PerformersPage({ key }: { key?: string }) {
+  const [selectedId, setSelectedId] = useState<number | null>(null);
+
+  return (
+    <motion.div 
+      className="flex flex-col h-full bg-slate-900 text-white overflow-y-auto pb-24"
+      initial={{ opacity: 0, x: 20 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: -20 }}
+      transition={{ duration: 0.3 }}
+    >
+      <div className="p-6 pt-12 sticky top-0 bg-slate-900/90 backdrop-blur-md z-10 border-b border-slate-800/50">
+        <h2 className="text-2xl font-bold tracking-wide">演出人員</h2>
+        <p className="text-indigo-400 text-sm mt-1">按曲目分類的各聲部名單</p>
+      </div>
+
+      <div className="p-6 space-y-4">
+        {PERFORMERS.map((perf, index) => (
+          <motion.div 
+            key={perf.id}
+            className={`bg-slate-800/80 rounded-2xl overflow-hidden border transition-all duration-300 ${
+              selectedId === perf.id 
+                ? 'border-indigo-500 shadow-lg shadow-indigo-500/10' 
+                : 'border-slate-700/50 hover:border-slate-600'
+            }`}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.1 }}
+          >
+            <div 
+              className="p-5 cursor-pointer flex items-center justify-between"
+              onClick={() => setSelectedId(selectedId === perf.id ? null : perf.id)}
+            >
+              <div>
+                <h3 className="text-lg font-bold mb-1">{perf.title}</h3>
+                <p className="text-slate-400 text-sm">演出名單</p>
+              </div>
+              <motion.div
+                animate={{ rotate: selectedId === perf.id ? 180 : 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <ChevronDown className={`w-6 h-6 transition-colors ${selectedId === perf.id ? 'text-indigo-400' : 'text-slate-600'}`} />
+              </motion.div>
+            </div>
+            
+            <AnimatePresence>
+              {selectedId === perf.id && (
+                <motion.div 
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: 'auto', opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  className="px-5 pb-5"
+                >
+                  <div className="pt-4 border-t border-slate-700/50 space-y-4">
+                    {perf.sections.map((section, idx) => (
+                      <div key={idx} className="bg-slate-900/50 p-4 rounded-xl border border-slate-700/30">
+                        <h4 className="text-indigo-400 font-bold text-sm mb-2">{section.role}</h4>
+                        <p className="text-slate-200 text-sm whitespace-pre-line leading-relaxed">
+                          {section.members}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
+        ))}
+      </div>
+    </motion.div>
+  );
+}
+
+// -------------------------------------------------------------
+// 【 頁籤四：贊助廠商 】
+// -------------------------------------------------------------
+const SPONSORS = [
+  { id: 1, name: "白沙樂器行", description: "專業國樂器展售、維修服務，提供本次畢演多項打擊樂器資源支援。", logo: "https://picsum.photos/seed/sponsor1/200/200" },
+  { id: 2, name: "國樂推廣基金會", description: "長期致力於傳統音樂推廣與教學，培育無數國樂英才，感謝大力贊助。", logo: "https://picsum.photos/seed/sponsor2/200/200" },
+  { id: 3, name: "地方熱心校友", description: "由100級歷屆學長姐聯合贊助，讓這場音樂會能更加圓滿。", logo: "https://picsum.photos/seed/sponsor3/200/200" },
+];
+
+function SponsorsPage({ key }: { key?: string }) {
+  return (
+    <motion.div 
+      className="flex flex-col h-full bg-slate-900 text-white overflow-y-auto pb-24"
+      initial={{ opacity: 0, x: 20 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: -20 }}
+      transition={{ duration: 0.3 }}
+    >
+      <div className="p-6 pt-12 sticky top-0 bg-slate-900/90 backdrop-blur-md z-10 border-b border-slate-800/50">
+        <h2 className="text-2xl font-bold tracking-wide">贊助廠商</h2>
+        <p className="text-indigo-400 text-sm mt-1">深表謝忱 共襄盛舉</p>
+      </div>
+      <div className="p-6 space-y-4">
+        {SPONSORS.map((sponsor, i) => (
+          <motion.div 
+            key={sponsor.id}
+            className="flex items-center gap-4 bg-slate-800/80 p-4 rounded-2xl border border-slate-700/50"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: i * 0.1 }}
+          >
+            <div className="w-20 h-20 shrink-0 bg-slate-700 rounded-xl overflow-hidden border border-slate-600">
+              <img src={sponsor.logo} alt={sponsor.name} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+            </div>
+            <div>
+              <h3 className="font-bold text-lg mb-1">{sponsor.name}</h3>
+              <p className="text-slate-400 text-sm leading-relaxed line-clamp-3">{sponsor.description}</p>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </motion.div>
+  );
+}
+
+// -------------------------------------------------------------
+// 【 底部導覽容器 】
+// -------------------------------------------------------------
+function MainTabsContainer({ key }: { key?: string }) {
+  const [activeTab, setActiveTab] = useState(1);
+
+  return (
+    <div className="flex flex-col h-full bg-slate-900 text-white relative">
+      <div className="flex-1 overflow-hidden relative">
+        <AnimatePresence mode="popLayout">
+          {activeTab === 1 && <GraduatesPage key="tab1" />}
+          {activeTab === 2 && <MusicListPage key="tab2" />}
+          {activeTab === 3 && <PerformersPage key="tab3" />}
+          {activeTab === 4 && <SponsorsPage key="tab4" />}
+        </AnimatePresence>
+      </div>
+      
+      {/* 底部導覽列 */}
+      <div className="absolute bottom-0 w-full bg-slate-900/95 backdrop-blur-lg border-t border-slate-800 flex justify-around items-center px-2 py-3 sm:pb-5 shadow-[0_-10px_30px_rgba(0,0,0,0.6)] z-50">
+        <button 
+          onClick={() => setActiveTab(1)} 
+          className={`flex flex-col items-center flex-1 transition-colors ${activeTab === 1 ? 'text-indigo-400' : 'text-slate-500 hover:text-slate-300'}`}
+        >
+          <GraduationCap className="w-[22px] h-[22px] mb-1.5" />
+          <span className="text-[10px] font-medium tracking-wide">畢業生</span>
+        </button>
+        <button 
+          onClick={() => setActiveTab(2)} 
+          className={`flex flex-col items-center flex-1 transition-colors ${activeTab === 2 ? 'text-indigo-400' : 'text-slate-500 hover:text-slate-300'}`}
+        >
+          <Music className="w-[22px] h-[22px] mb-1.5" />
+          <span className="text-[10px] font-medium tracking-wide">曲目</span>
+        </button>
+        <button 
+          onClick={() => setActiveTab(3)} 
+          className={`flex flex-col items-center flex-1 transition-colors ${activeTab === 3 ? 'text-indigo-400' : 'text-slate-500 hover:text-slate-300'}`}
+        >
+          <Users className="w-[22px] h-[22px] mb-1.5" />
+          <span className="text-[10px] font-medium tracking-wide">人員</span>
+        </button>
+        <button 
+          onClick={() => setActiveTab(4)} 
+          className={`flex flex-col items-center flex-1 transition-colors ${activeTab === 4 ? 'text-indigo-400' : 'text-slate-500 hover:text-slate-300'}`}
+        >
+          <HeartHandshake className="w-[22px] h-[22px] mb-1.5" />
+          <span className="text-[10px] font-medium tracking-wide">贊助</span>
+        </button>
+      </div>
+    </div>
+  );
+}
+
+// -------------------------------------------------------------
+// 【 根元件 】
+// -------------------------------------------------------------
 export default function App() {
   const [step, setStep] = useState(1);
 
@@ -300,7 +525,7 @@ export default function App() {
         <AnimatePresence mode="wait">
           {step === 1 && <LoadingSequencePage key="page1" onNext={() => setStep(2)} />}
           {step === 2 && <PopupPage key="page2" onNext={() => setStep(3)} />}
-          {step === 3 && <MusicListPage key="page3" />}
+          {step === 3 && <MainTabsContainer key="page3" />}
         </AnimatePresence>
       </div>
     </div>
