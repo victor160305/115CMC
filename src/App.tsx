@@ -41,7 +41,7 @@ function LoadingSequencePage({ onNext }: { key?: string; onNext: () => void }) {
 
   return (
     <motion.div 
-      className="flex flex-col items-center justify-center h-full bg-slate-900 text-white p-6"
+      className="flex flex-col items-center justify-center h-screen w-full bg-slate-900 text-white p-6"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0, scale: 0.95 }}
@@ -123,7 +123,7 @@ function PopupPage({ onNext }: { key?: string; onNext: () => void }) {
 
   return (
     <motion.div 
-      className="flex flex-col h-full bg-slate-900 text-white relative"
+      className="flex flex-col h-screen w-full bg-slate-900 text-white relative"
       initial={{ opacity: 0, x: 50 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -50 }}
@@ -198,17 +198,17 @@ const GRADUATES = [
 function GraduatesPage({ key }: { key?: string }) {
   return (
     <motion.div 
-      className="flex flex-col h-full bg-slate-900 text-white overflow-y-auto pb-24"
+      className="flex flex-col h-full bg-slate-900 text-white overflow-y-auto pb-28 md:pb-8"
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -20 }}
       transition={{ duration: 0.3 }}
     >
-      <div className="p-6 pt-12 sticky top-0 bg-slate-900/90 backdrop-blur-md z-10 border-b border-slate-800/50">
+      <div className="p-6 pt-12 md:pt-8 md:px-10 sticky top-0 bg-slate-900/90 backdrop-blur-md z-10 border-b border-slate-800/50">
         <h2 className="text-2xl font-bold tracking-wide">畢業生介紹</h2>
         <p className="text-indigo-400 text-sm mt-1">115級白沙國樂社 畢業生</p>
       </div>
-      <div className="p-6 space-y-6">
+      <div className="p-6 md:px-10 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 items-start">
         {GRADUATES.map((grad, i) => (
           <motion.div 
             key={grad.id} 
@@ -253,18 +253,18 @@ function MusicListPage({ key }: { key?: string }) {
 
   return (
     <motion.div 
-      className="flex flex-col h-full bg-slate-900 text-white overflow-y-auto pb-24"
+      className="flex flex-col h-full bg-slate-900 text-white overflow-y-auto pb-28 md:pb-8"
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -20 }}
       transition={{ duration: 0.3 }}
     >
-      <div className="p-6 pt-12 sticky top-0 bg-slate-900/90 backdrop-blur-md z-10 border-b border-slate-800/50">
+      <div className="p-6 pt-12 md:pt-8 md:px-10 sticky top-0 bg-slate-900/90 backdrop-blur-md z-10 border-b border-slate-800/50">
         <h2 className="text-2xl font-bold tracking-wide">樂曲介紹</h2>
         <p className="text-indigo-400 text-sm mt-1">探索今日演出曲目的背後故事</p>
       </div>
 
-      <div className="p-6 space-y-4">
+      <div className="p-6 md:px-10 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 items-start">
         {MUSICS.map((music, index) => (
           <motion.div 
             key={music.id}
@@ -346,18 +346,18 @@ function PerformersPage({ key }: { key?: string }) {
 
   return (
     <motion.div 
-      className="flex flex-col h-full bg-slate-900 text-white overflow-y-auto pb-24"
+      className="flex flex-col h-full bg-slate-900 text-white overflow-y-auto pb-28 md:pb-8"
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -20 }}
       transition={{ duration: 0.3 }}
     >
-      <div className="p-6 pt-12 sticky top-0 bg-slate-900/90 backdrop-blur-md z-10 border-b border-slate-800/50">
+      <div className="p-6 pt-12 md:pt-8 md:px-10 sticky top-0 bg-slate-900/90 backdrop-blur-md z-10 border-b border-slate-800/50">
         <h2 className="text-2xl font-bold tracking-wide">演出人員</h2>
         <p className="text-indigo-400 text-sm mt-1">按曲目分類的各聲部名單</p>
       </div>
 
-      <div className="p-6 space-y-4">
+      <div className="p-6 md:px-10 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 items-start">
         {PERFORMERS.map((perf, index) => (
           <motion.div 
             key={perf.id}
@@ -427,17 +427,17 @@ const SPONSORS = [
 function SponsorsPage({ key }: { key?: string }) {
   return (
     <motion.div 
-      className="flex flex-col h-full bg-slate-900 text-white overflow-y-auto pb-24"
+      className="flex flex-col h-full bg-slate-900 text-white overflow-y-auto pb-28 md:pb-8"
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -20 }}
       transition={{ duration: 0.3 }}
     >
-      <div className="p-6 pt-12 sticky top-0 bg-slate-900/90 backdrop-blur-md z-10 border-b border-slate-800/50">
+      <div className="p-6 pt-12 md:pt-8 md:px-10 sticky top-0 bg-slate-900/90 backdrop-blur-md z-10 border-b border-slate-800/50">
         <h2 className="text-2xl font-bold tracking-wide">贊助廠商</h2>
         <p className="text-indigo-400 text-sm mt-1">深表謝忱 共襄盛舉</p>
       </div>
-      <div className="p-6 space-y-4">
+      <div className="p-6 md:px-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 items-start">
         {SPONSORS.map((sponsor, i) => (
           <motion.div 
             key={sponsor.id}
@@ -461,15 +461,52 @@ function SponsorsPage({ key }: { key?: string }) {
 }
 
 // -------------------------------------------------------------
-// 【 底部導覽容器 】
+// 【 主要導覽容器 (Responsive) 】
 // -------------------------------------------------------------
 function MainTabsContainer({ key }: { key?: string }) {
   const [activeTab, setActiveTab] = useState(1);
 
   return (
-    <div className="flex flex-col h-full bg-slate-900 text-white relative">
+    <motion.div 
+      className="flex flex-col md:flex-row h-screen w-full bg-slate-900 text-white relative"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
+      {/* 桌面/平板 側邊導覽列 */}
+      <div className="hidden md:flex flex-col w-64 lg:w-72 border-r border-slate-800 bg-slate-900/95 z-50 shadow-[4px_0_24px_rgba(0,0,0,0.5)]">
+        <div className="p-8 border-b border-slate-800">
+          <h1 className="text-xl lg:text-2xl font-bold tracking-widest leading-relaxed">
+            115級白沙國樂社
+            <br />畢演會節目單
+          </h1>
+        </div>
+        <div className="flex-1 overflow-y-auto py-6 px-4 space-y-2">
+          {[
+            { id: 1, name: "畢業生介紹", icon: GraduationCap },
+            { id: 2, name: "樂曲介紹", icon: Music },
+            { id: 3, name: "演出人員", icon: Users },
+            { id: 4, name: "贊助廠商", icon: HeartHandshake }
+          ].map(tab => (
+            <button 
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)} 
+              className={`w-full flex items-center px-4 py-4 rounded-xl transition-all ${
+                activeTab === tab.id 
+                  ? 'bg-indigo-600/20 text-indigo-400 border border-indigo-500/30' 
+                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
+              }`}
+            >
+              <tab.icon className="w-5 h-5 mr-4" />
+              <span className="font-semibold tracking-wide">{tab.name}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* 內容區塊 */}
       <div className="flex-1 overflow-hidden relative">
-        <AnimatePresence mode="popLayout">
+        <AnimatePresence mode="wait">
           {activeTab === 1 && <GraduatesPage key="tab1" />}
           {activeTab === 2 && <MusicListPage key="tab2" />}
           {activeTab === 3 && <PerformersPage key="tab3" />}
@@ -477,8 +514,8 @@ function MainTabsContainer({ key }: { key?: string }) {
         </AnimatePresence>
       </div>
       
-      {/* 底部導覽列 */}
-      <div className="absolute bottom-0 w-full bg-slate-900/95 backdrop-blur-lg border-t border-slate-800 flex justify-around items-center px-2 py-3 sm:pb-5 shadow-[0_-10px_30px_rgba(0,0,0,0.6)] z-50">
+      {/* 手機 底部導覽列 */}
+      <div className="md:hidden absolute bottom-0 w-full bg-slate-900/95 backdrop-blur-lg border-t border-slate-800 flex justify-around items-center px-2 py-3 pb-5 shadow-[0_-10px_30px_rgba(0,0,0,0.6)] z-50">
         <button 
           onClick={() => setActiveTab(1)} 
           className={`flex flex-col items-center flex-1 transition-colors ${activeTab === 1 ? 'text-indigo-400' : 'text-slate-500 hover:text-slate-300'}`}
@@ -508,7 +545,7 @@ function MainTabsContainer({ key }: { key?: string }) {
           <span className="text-[10px] font-medium tracking-wide">贊助</span>
         </button>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
@@ -519,15 +556,12 @@ export default function App() {
   const [step, setStep] = useState(1);
 
   return (
-    <div className="min-h-screen bg-black flex justify-center items-center overflow-hidden font-sans">
-      {/* Mobile container - simulates a mobile screen on desktop, takes full screen on mobile */}
-      <div className="w-full max-w-md h-[100dvh] bg-slate-900 relative shadow-2xl overflow-hidden sm:h-[850px] sm:rounded-[2.5rem] sm:border-8 sm:border-slate-800">
-        <AnimatePresence mode="wait">
-          {step === 1 && <LoadingSequencePage key="page1" onNext={() => setStep(2)} />}
-          {step === 2 && <PopupPage key="page2" onNext={() => setStep(3)} />}
-          {step === 3 && <MainTabsContainer key="page3" />}
-        </AnimatePresence>
-      </div>
+    <div className="min-h-screen w-full bg-black font-sans text-white overflow-hidden">
+      <AnimatePresence mode="wait">
+        {step === 1 && <LoadingSequencePage key="page1" onNext={() => setStep(2)} />}
+        {step === 2 && <PopupPage key="page2" onNext={() => setStep(3)} />}
+        {step === 3 && <MainTabsContainer key="page3" />}
+      </AnimatePresence>
     </div>
   );
 }
