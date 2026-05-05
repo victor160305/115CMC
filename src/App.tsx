@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Music, ChevronRight, X, PlayCircle, GraduationCap, Users, HeartHandshake, ChevronDown } from 'lucide-react';
-import jungleKingImg from './assets/images/regenerated_image_1777993640577.jpg';
+import jungleKingImg from './assets/images/IMG_7706.jpg';
 
 const LOADING_IMAGES = [
   "https://picsum.photos/seed/classical/300/300",
