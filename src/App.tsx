@@ -563,7 +563,7 @@ function SponsorsPage({ key }: { key?: string }) {
 // -------------------------------------------------------------
 // 【 主要導覽容器 (Responsive) 】
 // -------------------------------------------------------------
-function MainTabsContainer({ key }: { key?: string }) {
+function MainTabsContainer() {
   const [activeTab, setActiveTab] = useState(1);
 
   return (
