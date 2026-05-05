@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Music, ChevronRight, X, PlayCircle, GraduationCap, Users, HeartHandshake, ChevronDown } from 'lucide-react';
+import sponsorImage from './assets/images/IMG_7706.jpg';
 
 const LOADING_IMAGES = [
   "https://picsum.photos/seed/classical/300/300",
@@ -41,7 +42,7 @@ function LoadingSequencePage({ onNext }: { key?: string; onNext: () => void }) {
 
   return (
     <motion.div 
-      className="flex flex-col items-center justify-center h-screen w-full bg-slate-900 text-white p-6"
+      className="flex flex-col items-center justify-center h-full w-full bg-slate-900 text-white p-6"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0, scale: 0.95 }}
@@ -123,7 +124,7 @@ function PopupPage({ onNext }: { key?: string; onNext: () => void }) {
 
   return (
     <motion.div 
-      className="flex flex-col h-screen w-full bg-slate-900 text-white relative"
+      className="flex flex-col h-full w-full bg-slate-900 text-white relative"
       initial={{ opacity: 0, x: 50 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -50 }}
@@ -516,7 +517,7 @@ function PerformersPage({ key }: { key?: string }) {
 // 【 頁籤四：贊助廠商 】
 // -------------------------------------------------------------
 const SPONSORS = [
-  { id: 0, name: "叢林霸主—林隆溫", description: "特別感謝！為本次畢演提供最大力的支持與幫助。", logo: "https://github.com/victor160305/115CMC/blob/main/src/assets/images/IMG_7706.jpg?raw=true", isPremium: true },
+  { id: 0, name: "叢林霸主—林隆溫", description: "特別感謝！為本次畢演提供最大力的支持與幫助。", logo: sponsorImage, isPremium: true },
   { id: 1, name: "白沙樂器行", description: "專業國樂器展售、維修服務，提供本次畢演多項打擊樂器資源支援。", logo: "https://picsum.photos/seed/sponsor1/200/200" },
   { id: 2, name: "國樂推廣基金會", description: "長期致力於傳統音樂推廣與教學，培育無數國樂英才，感謝大力贊助。", logo: "https://picsum.photos/seed/sponsor2/200/200" },
   { id: 3, name: "地方熱心校友", description: "由100級歷屆學長姐聯合贊助，讓這場音樂會能更加圓滿。", logo: "https://picsum.photos/seed/sponsor3/200/200" },
@@ -567,7 +568,7 @@ function MainTabsContainer() {
 
   return (
     <motion.div 
-      className="flex flex-col md:flex-row h-screen w-full bg-slate-900 text-white relative"
+      className="flex flex-col md:flex-row h-full w-full bg-slate-900 text-white relative"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -655,7 +656,7 @@ export default function App() {
   const [step, setStep] = useState(1);
 
   return (
-    <div className="min-h-screen w-full bg-black font-sans text-white overflow-hidden">
+    <div className="h-[100dvh] w-full bg-black font-sans text-white overflow-hidden">
       <AnimatePresence mode="wait">
         {step === 1 && <LoadingSequencePage key="page1" onNext={() => setStep(2)} />}
         {step === 2 && <PopupPage key="page2" onNext={() => setStep(3)} />}
