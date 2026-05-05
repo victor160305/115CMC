@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Music, ChevronRight, X, PlayCircle, GraduationCap, Users, HeartHandshake, ChevronDown } from 'lucide-react';
-import jungleKingImg from './assets/images/IMG_7706.jpg';
 
 const LOADING_IMAGES = [
   "https://picsum.photos/seed/classical/300/300",
@@ -517,7 +516,7 @@ function PerformersPage({ key }: { key?: string }) {
 // 【 頁籤四：贊助廠商 】
 // -------------------------------------------------------------
 const SPONSORS = [
-  { id: 0, name: "叢林霸主—林隆溫", description: "特別感謝！為本次畢演提供最大力的支持與幫助。", logo: jungleKingImg, isPremium: true },
+  { id: 0, name: "叢林霸主—林隆溫", description: "特別感謝！為本次畢演提供最大力的支持與幫助。", logo: "https://github.com/victor160305/115CMC/blob/main/src/assets/images/IMG_7706.jpg?raw=true", isPremium: true },
   { id: 1, name: "白沙樂器行", description: "專業國樂器展售、維修服務，提供本次畢演多項打擊樂器資源支援。", logo: "https://picsum.photos/seed/sponsor1/200/200" },
   { id: 2, name: "國樂推廣基金會", description: "長期致力於傳統音樂推廣與教學，培育無數國樂英才，感謝大力贊助。", logo: "https://picsum.photos/seed/sponsor2/200/200" },
   { id: 3, name: "地方熱心校友", description: "由100級歷屆學長姐聯合贊助，讓這場音樂會能更加圓滿。", logo: "https://picsum.photos/seed/sponsor3/200/200" },
