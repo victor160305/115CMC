@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Music, ChevronRight, X, PlayCircle, GraduationCap, Users, HeartHandshake, ChevronDown } from 'lucide-react';
+import jungleKingImg from './assets/images/regenerated_image_1777993640577.jpg';
 
 const LOADING_IMAGES = [
   "https://picsum.photos/seed/classical/300/300",
@@ -168,9 +169,16 @@ function PopupPage({ onNext }: { key?: string; onNext: () => void }) {
                 </button>
               </div>
               <h3 className="text-2xl font-bold mb-3 relative z-10">準備好聆聽了嗎？</h3>
-              <p className="text-slate-300 mb-8 leading-relaxed relative z-10">
-                接下來，我們將為您介紹今天的精彩演出內容、畢業生與演出陣容。請開啟您的音量，享受這趟音樂之旅。
-              </p>
+              <div className="text-slate-300 mb-8 leading-relaxed relative z-10 text-sm space-y-2">
+                <p>為維持高品質的演出環境，請配合以下事項：</p>
+                <ul className="list-disc pl-5 space-y-1">
+                  <li>演出期間請將手機調至<strong className="text-white">靜音</strong>或關機。</li>
+                  <li>全程<strong className="text-white">禁止使用閃光燈</strong>拍照。</li>
+                  <li>樂曲與樂章之間請保持安靜，待整首樂曲結束後再給予掌聲鼓勵。</li>
+                  <li>場內請勿飲食及大聲喧嘩。</li>
+                </ul>
+                <p className="pt-2 text-indigo-300 font-medium">感謝您的配合，祝您有個美好的音樂饗宴！</p>
+              </div>
               <button 
                 onClick={onNext}
                 className="w-full py-4 bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 rounded-xl font-bold tracking-wide transition-all shadow-lg shadow-indigo-500/25 relative z-10"
@@ -327,22 +335,112 @@ function MusicListPage({ key }: { key?: string }) {
 // -------------------------------------------------------------
 // 【 頁籤三：演出人員 】
 // -------------------------------------------------------------
-const DEFAULT_SECTIONS = [
-  { role: "指揮", members: "人員待補" },
-  { role: "吹管樂器", members: "梆笛：待補\n曲笛：待補\n笙：待補\n嗩吶：待補" },
-  { role: "拉弦樂器", members: "高胡：待補\n二胡：待補\n中胡：待補\n大提琴：待補\n低音提琴：待補" },
-  { role: "彈撥樂器", members: "柳琴：待補\n琵琶：待補\n揚琴：待補\n中阮：待補\n大阮：待補\n古箏：待補" },
-  { role: "打擊樂器", members: "排鼓：待補\n定音鼓：待補\n其他打擊：待補" }
+const PERFORMERS = [
+  {
+    id: 1,
+    title: "天山",
+    sections: [
+      { role: "吹管", members: "梆笛：子慈學姊、宛柔學姊\n曲笛：李昆佑、芳甄學姊、善茹學姊\n小笛：王竑頤\n高嗩：謝菁芸、李彥琦學長\n中嗩：林隆温\n高笙：林怡辰\n中笙：李宗憲學長" },
+      { role: "拉弦", members: "高胡：安佳瑜\n中胡：沈歆慈\n二胡：鍾翔蓁、周芳琦學姊、吳佩宜學姊、廖冠霆學長、周芷嵐學姊、宋和彥學長\ncello：陳㛄安學姊" },
+      { role: "彈撥", members: "柳琴：郭雨瑄、蘇子晴\n琵琶：張得萱、石明樺學長\n中阮：蔡文雅學姊\n大阮：潘羿均學姊" },
+      { role: "打擊", members: "揚琴：林佳樺學姊\n手鼓：盧品榕學姊\n鈴鼓：蘇昕悅\n排鼓/小軍鼓：蘇昱豪\n定音鼓：劉于嫙\n吊鈸：曾妤" }
+    ]
+  },
+  {
+    id: 2,
+    title: "丟丟銅",
+    sections: [
+      { role: "吹管", members: "曲笛：李昆佑\n高笙：林怡辰" },
+      { role: "拉弦", members: "二胡：安佳瑜、沈歆慈、謝菁芸、鍾翔蓁、廖冠霆學長、周芷嵐學姊、宋和彥學長\ncello：陳㛄安學姊" },
+      { role: "彈撥", members: "柳琴：郭雨瑄\n琵琶：張得萱、蕭宛琳學姊\n中阮：吳宥達學長" },
+      { role: "打擊", members: "排鼓/木魚：王竑頤\n吊鈸/三角鐵/雪鈴：溫舜如\n大鼓二號位：蘇昱豪 (待確認)" }
+    ]
+  },
+  {
+    id: 3,
+    title: "竹歌",
+    sections: [
+      { role: "吹管", members: "梆笛：宛柔學姊\n曲笛：林隆温\n高笙：林怡辰" },
+      { role: "拉弦", members: "二胡：安佳瑜、謝菁芸、鍾翔蓁\n中胡：沈歆慈\ncello：陳㛄安學姊" },
+      { role: "彈撥", members: "柳琴：郭雨瑄\n琵琶：張得萱\n中阮：石明樺學長" },
+      { role: "打擊", members: "揚琴：古竺艷學姊\n鋼片琴：溫舜如\n三角鐵：劉于嫙\n定音鼓：蘇昱豪" }
+    ]
+  },
+  {
+    id: 4,
+    title: "雨",
+    sections: [
+      { role: "吹管", members: "笛：林隆温\n高笙：林怡辰" },
+      { role: "拉弦", members: "高胡：安佳瑜\n二胡：謝菁芸、鍾翔蓁\n中胡：沈歆慈\ncello：陳㛄安學姊" },
+      { role: "彈撥", members: "柳琴：郭雨瑄\n琵琶：張得萱\n中阮：待補\n大阮：石明樺學長" },
+      { role: "打擊", members: "揚琴：林佳樺\n吊鈸/排鼓：劉于嫙\n木魚/鈴鼓/雨棒：蘇昱豪" }
+    ]
+  },
+  {
+    id: 5,
+    title: "神遊",
+    sections: [
+      { role: "吹管", members: "梆笛：李昆佑、芳甄學姊、品榕學姊\n曲笛：善茹學姊、忞茹學姊、竺艷學姊\n新笛：王竑頤、予訢學姊\n高嗩：謝菁芸\n中嗩：林隆温\n高笙：林怡辰\n中笙：李宗憲學長" },
+      { role: "拉弦", members: "高胡：安佳瑜\n中胡：沈歆慈\n二胡：周芳琦學姊、吳佩宜學姊、廖冠霆學長、周芷嵐學姊、宋和彥學長、鍾翔蓁\ncello：陳㛄安學姊" },
+      { role: "彈撥", members: "柳琴：潘羿均學姊\n琵琶：張得萱、劉奕彣學姊\n中阮：蔡文雅學姊\n大阮：石明樺學長、吳宥達學長" },
+      { role: "打擊", members: "揚琴：林佳樺學姊\n定音鼓：蘇昱豪\n小鈸：溫舜如\n大鑼：蘇昕悅\n西洋鈸：劉于嫙\n吊鈸：曾妤" }
+    ]
+  },
+  {
+    id: 6,
+    title: "童年",
+    sections: [
+      { role: "吹管", members: "梆笛：王竑頤、善茹學姊\n曲笛：品榕學姊、忞茹學姊、子慈學姊\n新笛：宛柔學姊、予訢學姊\n高嗩：謝菁芸\n高笙：林怡辰\n中笙：李宗憲學長" },
+      { role: "拉弦", members: "高胡：安佳瑜\n中胡：沈歆慈\n二胡：鍾翔蓁、廖冠霆學長、周芷嵐學姊、宋和彥學長、周芳琦學姊\ncello：陳㛄安學姊" },
+      { role: "彈撥", members: "柳琴：潘羿均學姊、蘇子晴\n琵琶：張得萱、蕭宛琳學姊\n中阮：郭雨瑄\n大阮：石明樺學長" },
+      { role: "打擊", members: "揚琴：古竺艷學姊\n小鐘琴/小軍鼓：溫舜如\n三角鐵/大鈸：蘇昕悅\n大鼓/吊鈸：曾妤\n定音鼓：蘇昱豪\n鈴鼓：劉于嫙" }
+    ]
+  },
+  {
+    id: 7,
+    title: "節日鑼鼓",
+    sections: [
+      { role: "吹管", members: "梆笛：宛柔學姊、予訢學姊、善茹學姊\n曲笛：王竑頤、李昆佑、子慈學姊\n高嗩：謝菁芸\n中嗩：林隆温\n高笙：林怡辰\n中笙：李宗憲學長" },
+      { role: "拉弦", members: "高胡：安佳瑜\n中胡：沈歆慈\n二胡：周芳琦學姊、吳佩宜學姊、廖冠霆學長、周芷嵐學姊、宋和彥學長、鍾翔蓁\ncello：黃湘紜學姊" },
+      { role: "彈撥", members: "柳琴：潘羿均學姊\n琵琶：張得萱、劉奕彣學姊\n中阮：蔡文雅學姊\n大阮：吳宥達學長、石明樺學長" },
+      { role: "打擊", members: "揚琴：林佳樺學姊\n小鈸：盧品榕學姊\n低鑼/引磬：李彥琦學長\n排鼓/雲鑼：蘇昱豪\n小鑼：劉于嫙\n大鑼：曾妤\n定音鼓/木魚：郭雨瑄\n中鈸/大鈸：蘇昕悅\n梆子：謝菁芸" }
+    ]
+  },
+  {
+    id: 8,
+    title: "Tequila",
+    sections: [
+      { role: "吹管", members: "梆笛：王竑頤、李昆佑\n曲笛：宛柔學姊\n高嗩：? (還在喬攏中)\n中嗩：? (還在喬攏中)\n高笙：林怡辰\n中笙：李宗憲學長" },
+      { role: "拉弦", members: "高胡：安佳瑜\n中胡：沈歆慈\n二胡：周芳琦學姊、吳佩宜學姊、廖冠霆學長、鍾翔蓁\ncello：陳㛄安學姊" },
+      { role: "彈撥", members: "柳琴：蘇子晴、潘羿均學姊\n琵琶：張得萱、劉奕彣學姊\n中阮：蔡文雅學姊、吳宥達學長\n大阮：石明樺學長" },
+      { role: "打擊", members: "待補" }
+    ]
+  }
 ];
-
-const PERFORMERS = MUSIC_TITLES.map((title, index) => ({
-  id: index + 1,
-  title,
-  sections: DEFAULT_SECTIONS
-}));
 
 function PerformersPage({ key }: { key?: string }) {
   const [selectedId, setSelectedId] = useState<number | null>(null);
+
+  // 依據曲名字首筆畫明確給予權重（確保各瀏覽器與系統排序一致）
+  const sortedPerformers = [...PERFORMERS].sort((a, b) => {
+    if (a.title === "Tequila") return 1;
+    if (b.title === "Tequila") return -1;
+
+    const strokeOrder: Record<string, number> = {
+      "天山": 4,       // 天 = 4畫
+      "丟丟銅": 6.1,   // 丟 = 6畫
+      "竹歌": 6.2,     // 竹 = 6畫
+      "雨": 8,         // 雨 = 8畫
+      "神遊": 9,       // 神 = 9畫
+      "童年": 12,      // 童 = 12畫
+      "節日鑼鼓": 13   // 節 = 13畫
+    };
+
+    const orderA = strokeOrder[a.title] || 50;
+    const orderB = strokeOrder[b.title] || 50;
+
+    return orderA - orderB;
+  });
 
   return (
     <motion.div 
@@ -358,7 +456,7 @@ function PerformersPage({ key }: { key?: string }) {
       </div>
 
       <div className="p-6 md:px-10 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 items-start">
-        {PERFORMERS.map((perf, index) => (
+        {sortedPerformers.map((perf, index) => (
           <motion.div 
             key={perf.id}
             className={`bg-slate-800/80 rounded-2xl overflow-hidden border transition-all duration-300 ${
@@ -419,6 +517,7 @@ function PerformersPage({ key }: { key?: string }) {
 // 【 頁籤四：贊助廠商 】
 // -------------------------------------------------------------
 const SPONSORS = [
+  { id: 0, name: "叢林霸主—林隆溫", description: "特別感謝！為本次畢演提供最大力的支持與幫助。", logo: jungleKingImg, isPremium: true },
   { id: 1, name: "白沙樂器行", description: "專業國樂器展售、維修服務，提供本次畢演多項打擊樂器資源支援。", logo: "https://picsum.photos/seed/sponsor1/200/200" },
   { id: 2, name: "國樂推廣基金會", description: "長期致力於傳統音樂推廣與教學，培育無數國樂英才，感謝大力贊助。", logo: "https://picsum.photos/seed/sponsor2/200/200" },
   { id: 3, name: "地方熱心校友", description: "由100級歷屆學長姐聯合贊助，讓這場音樂會能更加圓滿。", logo: "https://picsum.photos/seed/sponsor3/200/200" },
@@ -437,21 +536,22 @@ function SponsorsPage({ key }: { key?: string }) {
         <h2 className="text-2xl font-bold tracking-wide">贊助廠商</h2>
         <p className="text-indigo-400 text-sm mt-1">深表謝忱 共襄盛舉</p>
       </div>
-      <div className="p-6 md:px-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 items-start">
+      <div className="p-6 md:px-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 items-start auto-rows-max">
         {SPONSORS.map((sponsor, i) => (
           <motion.div 
             key={sponsor.id}
-            className="flex items-center gap-4 bg-slate-800/80 p-4 rounded-2xl border border-slate-700/50"
+            className={`flex ${sponsor.isPremium ? 'flex-col sm:flex-row col-span-1 md:col-span-2 lg:col-span-3 xl:col-span-4 bg-indigo-900/40 border-indigo-500/50 p-6 sm:p-8' : 'items-center bg-slate-800/80 p-4 border-slate-700/50'} gap-4 md:gap-6 rounded-2xl border`}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.1 }}
           >
-            <div className="w-20 h-20 shrink-0 bg-slate-700 rounded-xl overflow-hidden border border-slate-600">
-              <img src={sponsor.logo} alt={sponsor.name} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+            <div className={`shrink-0 flex justify-center bg-black/50 rounded-xl overflow-hidden border border-slate-600 ${sponsor.isPremium ? 'w-full sm:w-48 lg:w-64 h-auto' : 'w-20 h-20 bg-slate-700'}`}>
+              <img src={sponsor.logo} alt={sponsor.name} className={`w-full ${sponsor.isPremium ? 'h-auto object-contain' : 'h-full object-cover'}`} referrerPolicy="no-referrer" />
             </div>
-            <div>
-              <h3 className="font-bold text-lg mb-1">{sponsor.name}</h3>
-              <p className="text-slate-400 text-sm leading-relaxed line-clamp-3">{sponsor.description}</p>
+            <div className="flex-1">
+              {sponsor.isPremium && <span className="inline-block px-3 py-1 mb-3 text-xs font-bold tracking-wider text-indigo-300 bg-indigo-900/80 rounded-full border border-indigo-700/50">首席特別贊助</span>}
+              <h3 className={`font-bold mb-1 ${sponsor.isPremium ? 'text-2xl sm:text-3xl text-indigo-100 mb-2' : 'text-lg'}`}>{sponsor.name}</h3>
+              <p className={`leading-relaxed ${sponsor.isPremium ? 'text-indigo-200/80 sm:text-lg' : 'text-slate-400 text-sm line-clamp-3'}`}>{sponsor.description}</p>
             </div>
           </motion.div>
         ))}
