@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Music, ChevronRight, X, PlayCircle, GraduationCap, Users, HeartHandshake, ChevronDown } from 'lucide-react';
 import sponsorImage from './assets/images/IMG_7706.jpg';
+import zhongImage from './assets/images/IMG_2629.jpg';
+import suImage from './assets/images/IMG_2915.jpg';
+import linImage from './assets/images/IMG_2998.jpg';
 
 const LOADING_IMAGES = [
   "https://picsum.photos/seed/classical/300/300",
@@ -197,13 +200,32 @@ function PopupPage({ onNext }: { key?: string; onNext: () => void }) {
 // 【 頁籤一：畢業生介紹 】
 // -------------------------------------------------------------
 const GRADUATES = [
-  { id: 1, name: "林隆溫", instrument: "待補", description: "林隆溫的介紹文字即將在此更新...", photo: "https://picsum.photos/seed/grad1/400/400" },
+  { id: 1, name: "林隆溫", instrument: "待補", description: "林隆溫的介紹文字即將在此更新...", photo: linImage },
   { id: 2, name: "謝菁芸", instrument: "待補", description: "謝菁芸的介紹文字即將在此更新...", photo: "https://picsum.photos/seed/grad2/400/400" },
-  { id: 3, name: "蘇昱豪", instrument: "待補", description: "蘇昱豪的介紹文字即將在此更新...", photo: "https://picsum.photos/seed/grad3/400/400" },
-  { id: 4, name: "鍾翔蓁", instrument: "待補", description: "鍾翔蓁的介紹文字即將在此更新...", photo: "https://picsum.photos/seed/grad4/400/400" }
+  { id: 3, name: "蘇昱豪", instrument: "待補", description: `AKA 叢林霸主🦁
+我也不知道為什麼🤪
+貌似是因為獅子座，但獅子跟叢林的關係到底是什麼？
+📖 小知識時間：
+「獅子是叢林之王」這個說法，其實來自英文俗諺 “King of the Jungle”。
+但學者推測，這裡的 Jungle 在早期梵文或波斯文中，原本比較接近「荒地」或「乾燥開闊的森林」，其實更符合獅子的棲息地。
+只是後來 Jungle 逐漸被大家理解成熱帶雨林，於是就有了這個美麗的誤會🌳🦁
+
+MBTI：ENFP(●'◡'●)
+曾經在高中時期是穩妥妥的 J 人，
+但不知道為什麼上大學後就變成 P 人了。
+可能是學會了什麼叫做痛苦轉移
+🎶 把一個人的工作～～～轉移到另一群人的肩上 🎶
+
+主要生存在那一整排的打擊🥁
+但鍵盤真的好恐怖啊啊啊啊啊！！！
+偶爾也會跳去嗩吶組，成為一位在國樂吹北管的不稱職玩家🎺
+🎶 工阿六阿五乂仩 🎶`, photo: suImage },
+  { id: 4, name: "鍾翔蓁", instrument: "待補", description: "鍾翔蓁的介紹文字即將在此更新...", photo: zhongImage }
 ];
 
 function GraduatesPage({ key }: { key?: string }) {
+  const [selectedId, setSelectedId] = useState<number | null>(null);
+
   return (
     <motion.div 
       className="flex flex-col h-full bg-slate-900 text-white overflow-y-auto pb-28 md:pb-8"
@@ -220,22 +242,51 @@ function GraduatesPage({ key }: { key?: string }) {
         {GRADUATES.map((grad, i) => (
           <motion.div 
             key={grad.id} 
-            className="bg-slate-800/80 rounded-2xl overflow-hidden border border-slate-700/50 shadow-lg"
+            className={`bg-slate-800/80 rounded-2xl overflow-hidden border transition-all duration-300 ${
+              selectedId === grad.id 
+                ? 'border-indigo-500 shadow-lg shadow-indigo-500/10' 
+                : 'border-slate-700/50 hover:border-slate-600 shadow-lg'
+            }`}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.1 }}
           >
-            <div className="h-56 bg-slate-700 relative">
-              <img src={grad.photo} alt={grad.name} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+            <div className="w-full bg-slate-700 relative flex justify-center bg-black/20">
+              <img src={grad.photo} alt={grad.name} className="w-full h-auto object-contain" referrerPolicy="no-referrer" />
+              <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-slate-900 to-transparent"></div>
               <span className="absolute bottom-4 right-4 px-3 py-1 bg-indigo-600/90 text-white text-xs rounded-full font-medium shadow-md">
                 {grad.instrument}
               </span>
             </div>
-            <div className="p-5 pt-3">
-              <h3 className="text-xl font-bold mb-2">{grad.name}</h3>
-              <p className="text-slate-300 text-sm leading-relaxed">{grad.description}</p>
+            
+            <div 
+              className="p-5 cursor-pointer flex items-center justify-between"
+              onClick={() => setSelectedId(selectedId === grad.id ? null : grad.id)}
+            >
+              <h3 className="text-xl font-bold">{grad.name}</h3>
+              <motion.div
+                animate={{ rotate: selectedId === grad.id ? 180 : 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <ChevronDown className={`w-6 h-6 transition-colors ${selectedId === grad.id ? 'text-indigo-400' : 'text-slate-600'}`} />
+              </motion.div>
             </div>
+
+            <AnimatePresence>
+              {selectedId === grad.id && (
+                <motion.div 
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: 'auto', opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  className="px-5 pb-5 overflow-hidden"
+                >
+                  <div className="pt-2 border-t border-slate-700/50">
+                    <p className="text-slate-300 text-sm leading-relaxed whitespace-pre-line mt-3">{grad.description}</p>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.div>
         ))}
       </div>
@@ -293,7 +344,7 @@ const MUSICS = [
     id: 7,
     title: "節日鑼鼓",
     composer: "蘇文慶",
-    description: "作曲家蘇文慶於1990年創作的《節日鑼鼓》，靈感源自民間喜慶音樂。透過打擊協奏曲的形式，運用排鼓、鑼與多樣吹打樂器，描繪出熱鬧節慶中的歡愉景象與人聲鼎沸的氣氛\n\n由打擊主奏領銜開場，序奏節奏鮮明、層次分明，隨後樂團快板與中板交錯推進，猶如節日隊伍在街巷穿梭。樂曲中不斷回返的打擊段落，如同熱鬧慶典中此起彼落的鑼鼓聲，為整體注入源源不絕的能量與律動 \n尾聲急板氣勢磅礡，為整首曲子畫下華麗句點，也讓觀眾彷彿置身節慶最高潮的絢爛時刻。蘇文慶以鮮明的節奏與歡快的旋律，勾勒出節日時人們歡聚的熱鬧景象，不僅展現傳統音樂的色彩，更帶來滿溢心間的喜悅與歡騰\n在《節日鑼鼓》中，打擊主奏與樂團彼此交錯穿插、互相呼應，或穩重鋪陳，或活力湧現，將節慶的氛圍描繪得淋漓盡致",
+    description: "作曲家蘇文慶於1990年創作的《節日鑼鼓》，靈感源自民間喜慶音樂，透過打擊協奏曲的形式，運用排鼓、鑼與多樣吹打樂器，描繪出熱鬧節慶中的歡愉景象與人聲鼎沸的氣氛。\n由打擊領銜開場，序奏節奏鮮明、層次分明，隨後樂團快板與中板交錯推進，猶如節日隊伍在街巷穿梭。\n樂曲中不斷回返的打擊段落，如同熱鬧慶典中此起彼落的鑼鼓聲，為整體注入源源不絕的能量與律動。\n尾聲急板氣勢磅礡，為整首曲子畫下華麗句點，也讓觀眾彷彿置身節慶最高潮的絢爛時刻。\n蘇文慶以鮮明的節奏與歡快的旋律，勾勒出節日時人們歡聚的熱鬧景象，不僅展現傳統音樂的色彩，更帶來滿溢心間的喜悅與歡騰。\n在《節日鑼鼓》中，打擊主奏與樂團彼此交錯穿插、互相呼應，或穩重鋪陳，或活力湧現，將節慶的氛圍描繪得淋漓盡致。",
     tags: ["國樂"]
   },
   {
