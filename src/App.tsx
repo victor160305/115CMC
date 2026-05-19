@@ -5,6 +5,7 @@ import sponsorImage from './assets/images/IMG_7706.jpg';
 import zhongImage from './assets/images/IMG_2629.jpg';
 import suImage from './assets/images/IMG_2915.jpg';
 import linImage from './assets/images/IMG_2998.jpg';
+import xieImage from './assets/images/P7170058.jpg';
 
 const LOADING_IMAGES = [
   "https://picsum.photos/seed/classical/300/300",
@@ -200,8 +201,8 @@ function PopupPage({ onNext }: { key?: string; onNext: () => void }) {
 // 【 頁籤一：畢業生介紹 】
 // -------------------------------------------------------------
 const GRADUATES = [
-  { id: 1, name: "林隆溫", instrument: "待補", description: "林隆溫的介紹文字即將在此更新...", photo: linImage },
-  { id: 2, name: "謝菁芸", instrument: "待補", description: "謝菁芸的介紹文字即將在此更新...", photo: "https://picsum.photos/seed/grad2/400/400" },
+  { id: 1, name: "林隆温", instrument: "待補", description: "林隆溫的介紹文字即將在此更新...", photo: linImage },
+  { id: 2, name: "謝菁芸", instrument: "待補", description: "謝菁芸的介紹文字即將在此更新...", photo: xieImage },
   { id: 3, name: "蘇昱豪", instrument: "待補", description: `AKA 叢林霸主🦁
 我也不知道為什麼🤪
 貌似是因為獅子座，但獅子跟叢林的關係到底是什麼？
@@ -254,9 +255,6 @@ function GraduatesPage({ key }: { key?: string }) {
             <div className="w-full bg-slate-700 relative flex justify-center bg-black/20">
               <img src={grad.photo} alt={grad.name} className="w-full h-auto object-contain" referrerPolicy="no-referrer" />
               <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-slate-900 to-transparent"></div>
-              <span className="absolute bottom-4 right-4 px-3 py-1 bg-indigo-600/90 text-white text-xs rounded-full font-medium shadow-md">
-                {grad.instrument}
-              </span>
             </div>
             
             <div 
@@ -346,13 +344,6 @@ const MUSICS = [
     composer: "蘇文慶",
     description: "作曲家蘇文慶於1990年創作的《節日鑼鼓》，靈感源自民間喜慶音樂，透過打擊協奏曲的形式，運用排鼓、鑼與多樣吹打樂器，描繪出熱鬧節慶中的歡愉景象與人聲鼎沸的氣氛。\n由打擊領銜開場，序奏節奏鮮明、層次分明，隨後樂團快板與中板交錯推進，猶如節日隊伍在街巷穿梭。\n樂曲中不斷回返的打擊段落，如同熱鬧慶典中此起彼落的鑼鼓聲，為整體注入源源不絕的能量與律動。\n尾聲急板氣勢磅礡，為整首曲子畫下華麗句點，也讓觀眾彷彿置身節慶最高潮的絢爛時刻。\n蘇文慶以鮮明的節奏與歡快的旋律，勾勒出節日時人們歡聚的熱鬧景象，不僅展現傳統音樂的色彩，更帶來滿溢心間的喜悅與歡騰。\n在《節日鑼鼓》中，打擊主奏與樂團彼此交錯穿插、互相呼應，或穩重鋪陳，或活力湧現，將節慶的氛圍描繪得淋漓盡致。",
     tags: ["國樂"]
-  },
-  {
-    id: 8,
-    title: "Tequila",
-    composer: "作曲家待補",
-    description: "《Tequila》的詳細樂曲介紹內容即將在此更新，敬請期待。",
-    tags: ["流行樂"]
   }
 ];
 
@@ -505,16 +496,6 @@ const PERFORMERS = [
       { role: "彈撥", members: "柳琴：*潘羿均\n琵琶：張得萱、*劉奕彣\n中阮：*蔡文雅\n大阮：*吳宥達、*石明樺" },
       { role: "打擊", members: "揚琴：*林佳樺\n小鈸：*盧品榕\n低鑼/引磬：*李彥琦\n排鼓/雲鑼：蘇昱豪\n小鑼：劉于嫙\n大鑼：曾妤\n定音鼓/木魚：郭雨瑄\n中鈸/大鈸：蘇昕悅\n梆子/碰鈴：謝菁芸" }
     ]
-  },
-  {
-    id: 8,
-    title: "Tequila",
-    sections: [
-      { role: "吹管", members: "梆笛：王竑頤、李昆祐\n曲笛：*吳宛柔\n高嗩：林隆温\n中嗩：蘇昱豪\n高笙：林怡辰\n中笙：*李宗憲" },
-      { role: "拉弦", members: "高胡：安佳瑜\n中胡：沈歆慈\n二胡：鍾翔蓁、*周芳琦、*吳佩宜\ncello：陳㛄安" },
-      { role: "彈撥", members: "柳琴：蘇子晴、*潘羿均\n琵琶：張得萱、*劉奕彣\n中阮：*蔡文雅、*吳宥達\n大阮：*石明樺" },
-      { role: "打擊", members: "排鼓：蘇昱豪\n定音鼓：溫舜如\nAgogo ：劉于嫙\n邦哥鼓：*盧品榕\n牛鈴：*李彥琦\n沙鈴：蘇忻悅&曾妤" }
-    ]
   }
 ];
 
@@ -523,9 +504,6 @@ function PerformersPage({ key }: { key?: string }) {
 
   // 依據曲名字首筆畫明確給予權重（確保各瀏覽器與系統排序一致）
   const sortedPerformers = [...PERFORMERS].sort((a, b) => {
-    if (a.title === "Tequila") return 1;
-    if (b.title === "Tequila") return -1;
-
     const strokeOrder: Record<string, number> = {
       "天山": 4,       // 天 = 4畫
       "丟丟銅": 6.1,   // 丟 = 6畫
