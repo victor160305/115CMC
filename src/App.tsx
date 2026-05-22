@@ -368,6 +368,8 @@ const MUSICS = [
 function MusicListPage({ key }: { key?: string }) {
   const [selectedId, setSelectedId] = useState<number | null>(null);
 
+  const sortedMusics = [...MUSICS].sort((a, b) => a.title.length - b.title.length);
+
   return (
     <motion.div 
       className="flex flex-col h-full bg-slate-900 text-white overflow-y-auto pb-28 md:pb-8"
@@ -382,7 +384,7 @@ function MusicListPage({ key }: { key?: string }) {
       </div>
 
       <div className="p-6 md:px-10 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 items-start">
-        {MUSICS.map((music, index) => (
+        {sortedMusics.map((music, index) => (
           <motion.div 
             key={music.id}
             className={`bg-slate-800/80 rounded-2xl overflow-hidden border transition-all duration-300 ${
@@ -520,23 +522,8 @@ const PERFORMERS = [
 function PerformersPage({ key }: { key?: string }) {
   const [selectedId, setSelectedId] = useState<number | null>(null);
 
-  // 依據曲名字首筆畫明確給予權重（確保各瀏覽器與系統排序一致）
-  const sortedPerformers = [...PERFORMERS].sort((a, b) => {
-    const strokeOrder: Record<string, number> = {
-      "天山": 4,       // 天 = 4畫
-      "丟丟銅": 6.1,   // 丟 = 6畫
-      "竹歌": 6.2,     // 竹 = 6畫
-      "雨": 8,         // 雨 = 8畫
-      "神遊": 9,       // 神 = 9畫
-      "童年": 12,      // 童 = 12畫
-      "節日": 13       // 節 = 13畫
-    };
-
-    const orderA = strokeOrder[a.title] || 50;
-    const orderB = strokeOrder[b.title] || 50;
-
-    return orderA - orderB;
-  });
+  // 依據曲名字數進行排序
+  const sortedPerformers = [...PERFORMERS].sort((a, b) => a.title.length - b.title.length);
 
   return (
     <motion.div 
