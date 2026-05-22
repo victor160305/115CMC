@@ -599,11 +599,166 @@ function PerformersPage({ key }: { key?: string }) {
 // -------------------------------------------------------------
 // 【 頁籤四：贊助廠商 】
 // -------------------------------------------------------------
-const SPONSORS = [
-  { id: 0, name: "嗩吶之王—林隆溫", description: "特別感謝！為本次畢演提供最大力的支持與幫助。", logo: sponsorImage, isPremium: true },
-  { id: 1, name: "白沙樂器行", description: "專業國樂器展售、維修服務，提供本次畢演多項打擊樂器資源支援。", logo: "https://picsum.photos/seed/sponsor1/200/200" },
-  { id: 2, name: "國樂推廣基金會", description: "長期致力於傳統音樂推廣與教學，培育無數國樂英才，感謝大力贊助。", logo: "https://picsum.photos/seed/sponsor2/200/200" },
-  { id: 3, name: "地方熱心校友", description: "由100級歷屆學長姐聯合贊助，讓這場音樂會能更加圓滿。", logo: "https://picsum.photos/seed/sponsor3/200/200" },
+const SPONSOR_CATEGORIES: Array<{
+  title: string;
+  items: Array<{
+    id: string;
+    name: string;
+    amount?: string;
+    description?: string;
+    logo?: string;
+    isPremium?: boolean;
+  }>;
+}> = [
+  {
+    title: "特殊贊助",
+    items: [
+      { id: 's0', name: "林隆温", amount: "", description: "特別感謝！為本次畢演提供最大力的支持與幫助。", logo: sponsorImage, isPremium: true },
+      { id: 's1', name: "劉智華學長", amount: "2000", isPremium: true },
+      { id: 's2', name: "寶山精緻美食", amount: "1000", isPremium: true },
+    ]
+  },
+  {
+    title: "店名 (>=1000)",
+    items: [
+      { id: 's3', name: "宏恩眼鏡", amount: "2000" },
+      { id: 's4', name: "祥贏投注站", amount: "1000" },
+      { id: 's5', name: "善心人士", amount: "1000" },
+      { id: 's6', name: "善心人士", amount: "1000" },
+      { id: 's7', name: "卦山不動產", amount: "1000" },
+    ]
+  },
+  {
+    title: "店名 (1000~500)",
+    items: [
+      { id: 's8', name: "四光南記", amount: "600" },
+      { id: 's9', name: "麵屋三金", amount: "600" },
+    ]
+  },
+  {
+    title: "店名 (100~500)",
+    items: [
+      { id: 's10', name: "馬駿工業(股)公司", amount: "500" },
+      { id: 's11', name: "龍哥雞排", amount: "500" },
+      { id: 's12', name: "好像是手機維修行", amount: "500" },
+      { id: 's13', name: "長江素食店", amount: "500" },
+      { id: 's14', name: "富田中藥行", amount: "500" },
+      { id: 's15', name: "蓉來", amount: "500" },
+      { id: 's16', name: "康寶十全藥燉排骨", amount: "300" },
+      { id: 's17', name: "寶來大腸麵線", amount: "300" },
+      { id: 's18', name: "A古爌肉飯", amount: "300" },
+      { id: 's19', name: "隨緣珍珠奶", amount: "300" },
+      { id: 's20', name: "阿誠現炒", amount: "300" },
+      { id: 's21', name: "阿智鵝肉大王", amount: "300" },
+      { id: 's22', name: "百華味", amount: "300" },
+      { id: 's23', name: "鳳山米糕", amount: "200" },
+      { id: 's24', name: "品翔當歸鴨大埔店", amount: "200" },
+      { id: 's25', name: "有種鹽水雞", amount: "200" },
+      { id: 's26', name: "來吉烤鴨", amount: "200" },
+      { id: 's27', name: "九色香雞排", amount: "200" },
+      { id: 's28', name: "微甜日光", amount: "200" },
+      { id: 's29', name: "修護師手機平板專業維修", amount: "200" },
+      { id: 's30', name: "福田家咖哩食堂", amount: "200" },
+      { id: 's31', name: "牛太郎", amount: "200" },
+      { id: 's32', name: "米香園", amount: "200" },
+      { id: 's33', name: "善心人士", amount: "200" },
+      { id: 's34', name: "發發發發允得商行", amount: "200" },
+      { id: 's35', name: "彩碗", amount: "200" },
+      { id: 's36', name: "熱浪小島", amount: "200" },
+      { id: 's37', name: "徐師父麻辣臭豆腐", amount: "200" },
+      { id: 's38', name: "守飛雞蛋糕", amount: "200" },
+      { id: 's39', name: "麥田早餐店", amount: "200" },
+      { id: 's40', name: "明記燒鴨", amount: "200" },
+      { id: 's41', name: "安可專業眼鏡", amount: "200" },
+      { id: 's42', name: "洪鹽酥雞", amount: "200" },
+      { id: 's43', name: "十九甲雞排", amount: "200" },
+      { id: 's44', name: "旅人阿宏", amount: "200" },
+      { id: 's45', name: "三民烤肉", amount: "200" },
+      { id: 's46', name: "里仁", amount: "130" },
+      { id: 's47', name: "翔泰專業眼鏡公司", amount: "100" },
+      { id: 's48', name: "大業機車行", amount: "100" },
+      { id: 's49', name: "尚品芋園", amount: "100" },
+      { id: 's50', name: "肉圓仔", amount: "100" },
+      { id: 's51', name: "鑫鮮味臭臭鍋", amount: "100" },
+      { id: 's52', name: "蜀都大埔店", amount: "100" },
+      { id: 's53', name: "向日葵", amount: "100" },
+      { id: 's54', name: "我家雞排大埔店", amount: "100" },
+      { id: 's55', name: "吳家紅茶冰大埔店", amount: "100" },
+      { id: 's56', name: "財𨪛車行", amount: "100" },
+      { id: 's57', name: "揪吃芭樂", amount: "100" },
+      { id: 's58', name: "阿忠刈包", amount: "100" },
+      { id: 's59', name: "水果攤", amount: "100" },
+      { id: 's60', name: "七七七彩券行", amount: "100" },
+      { id: 's61', name: "林二代瓜仔魯炒麵", amount: "100" },
+      { id: 's62', name: "美庚深海深美食坊", amount: "100" },
+      { id: 's63', name: "福田眼鏡行", amount: "100" },
+      { id: 's64', name: "聯的食品", amount: "100" },
+      { id: 's65', name: "義式88杯麵", amount: "100" },
+      { id: 's66', name: "女3C手機配件", amount: "100" },
+      { id: 's67', name: "桂香坊冰糖醬滷味", amount: "100" },
+      { id: 's68', name: "善心人士樂捐", amount: "100" },
+      { id: 's69', name: "斑馬喫茶館", amount: "100" },
+      { id: 's70', name: "大肚量＆小肚量茶飲站", amount: "100" },
+      { id: 's71', name: "聯成書局", amount: "100" },
+      { id: 's72', name: "DOZO", amount: "100" },
+      { id: 's73', name: "大媽の店", amount: "100" },
+      { id: 's74', name: "阿鍋·家(南郭店)", amount: "100" },
+      { id: 's75', name: "善心人士", amount: "100" },
+      { id: 's76', name: "心喜手工茶", amount: "100" },
+      { id: 's77', name: "珍北平豬肉餡餅", amount: "100" },
+      { id: 's78', name: "米豐", amount: "100" },
+      { id: 's79', name: "佬台南鍋燒意麵", amount: "100" },
+      { id: 's80', name: "南北第七家", amount: "100" },
+      { id: 's81', name: "手機工廠", amount: "100" },
+      { id: 's82', name: "蟹將軍", amount: "100" },
+      { id: 's83', name: "鑫億來投注站", amount: "100" },
+      { id: 's84', name: "永晟機車行", amount: "100" },
+      { id: 's85', name: "楊小姐", amount: "100" },
+      { id: 's86', name: "華新運動", amount: "100" },
+      { id: 's87', name: "客多法式捲餅", amount: "100" },
+      { id: 's88', name: "牛媽媽", amount: "100" },
+      { id: 's89', name: "田原茶鋪", amount: "100" },
+      { id: 's90', name: "九品現炒", amount: "100" },
+      { id: 's91', name: "發財臭豆腐", amount: "100" },
+      { id: 's92', name: "府城", amount: "100" },
+      { id: 's93', name: "如意早餐", amount: "100" },
+      { id: 's94', name: "滿香中西式早餐", amount: "100" },
+      { id: 's95', name: "ANGEL髮藝空間", amount: "100" },
+      { id: 's96', name: "善心人士", amount: "100" },
+      { id: 's97', name: "善心人士", amount: "100" },
+      { id: 's98', name: "雅頓彰化陽明店", amount: "100" },
+      { id: 's99', name: "泰宇電腦", amount: "100" },
+      { id: 's100', name: "橙品快炒店", amount: "100" },
+      { id: 's101', name: "全香肉乾", amount: "100" },
+      { id: 's102', name: "御麵棧美食", amount: "100" },
+      { id: 's103', name: "瑞興中藥行", amount: "100" },
+      { id: 's104', name: "澎湖伯豆花圓仔", amount: "100" },
+      { id: 's105', name: "楓木芸藝術花坊", amount: "100" },
+      { id: 's106', name: "善心人士", amount: "100" },
+      { id: 's107', name: "三民木瓜牛乳", amount: "100" },
+      { id: 's108', name: "回生中藥行", amount: "100" },
+      { id: 's109', name: "彩虹照相館", amount: "100" },
+      { id: 's110', name: "善心人士", amount: "100" },
+      { id: 's111', name: "早安家", amount: "100" },
+    ]
+  },
+  {
+    title: "店名 (<100)",
+    items: [
+      { id: 's112', name: "食神滷味", amount: "50" },
+      { id: 's113', name: "瘋雞鹽酥雞", amount: "50" },
+      { id: 's114', name: "榆蓉會館", amount: "50" },
+      { id: 's115', name: "善心人士", amount: "50" },
+      { id: 's116', name: "善心人士", amount: "50" },
+      { id: 's117', name: "吳記茶舍", amount: "50" },
+      { id: 's118', name: "朋志書局", amount: "50" },
+      { id: 's119', name: "爭夯牛排館", amount: "50" },
+      { id: 's120', name: "綺雅花苑", amount: "50" },
+      { id: 's121', name: "YYDS手機配件", amount: "40" },
+      { id: 's122', name: "御記烤鴨", amount: "10" },
+      { id: 's123', name: "善心人士", amount: "10" }
+    ]
+  }
 ];
 
 function SponsorsPage({ key }: { key?: string }) {
@@ -619,24 +774,52 @@ function SponsorsPage({ key }: { key?: string }) {
         <h2 className="text-2xl font-bold tracking-wide">贊助廠商</h2>
         <p className="text-indigo-400 text-sm mt-1">深表謝忱 共襄盛舉</p>
       </div>
-      <div className="p-6 md:px-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 items-start auto-rows-max">
-        {SPONSORS.map((sponsor, i) => (
-          <motion.div 
-            key={sponsor.id}
-            className={`flex ${sponsor.isPremium ? 'flex-col sm:flex-row col-span-1 md:col-span-2 lg:col-span-3 xl:col-span-4 bg-indigo-900/40 border-indigo-500/50 p-6 sm:p-8' : 'items-center bg-slate-800/80 p-4 border-slate-700/50'} gap-4 md:gap-6 rounded-2xl border`}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.1 }}
-          >
-            <div className={`shrink-0 flex justify-center bg-black/50 rounded-xl overflow-hidden border border-slate-600 ${sponsor.isPremium ? 'w-full sm:w-48 lg:w-64 h-auto' : 'w-20 h-20 bg-slate-700'}`}>
-              <img src={sponsor.logo} alt={sponsor.name} className={`w-full ${sponsor.isPremium ? 'h-auto object-contain' : 'h-full object-cover'}`} referrerPolicy="no-referrer" />
-            </div>
-            <div className="flex-1">
-              {sponsor.isPremium && <span className="inline-block px-3 py-1 mb-3 text-xs font-bold tracking-wider text-indigo-300 bg-indigo-900/80 rounded-full border border-indigo-700/50">首席特別贊助</span>}
-              <h3 className={`font-bold mb-1 ${sponsor.isPremium ? 'text-2xl sm:text-3xl text-indigo-100 mb-2' : 'text-lg'}`}>{sponsor.name}</h3>
-              <p className={`leading-relaxed ${sponsor.isPremium ? 'text-indigo-200/80 sm:text-lg' : 'text-slate-400 text-sm line-clamp-3'}`}>{sponsor.description}</p>
-            </div>
-          </motion.div>
+      <div className="p-6 md:px-10 flex flex-col gap-10">
+        {SPONSOR_CATEGORIES.map((category, catIndex) => (
+          <div key={catIndex}>
+            <h3 className="text-xl font-bold text-indigo-300 mb-4 pb-2 border-b border-slate-700/50">{category.title}</h3>
+            
+            {catIndex === 0 ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {category.items.map((sponsor, i) => (
+                  <motion.div 
+                    key={sponsor.id}
+                    className="flex flex-col sm:flex-row col-span-1 md:col-span-2 lg:col-span-3 xl:col-span-4 bg-indigo-900/40 border border-indigo-500/50 p-6 sm:p-8 gap-4 md:gap-6 rounded-2xl"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.1 }}
+                  >
+                    {sponsor.logo && (
+                      <div className="shrink-0 flex justify-center bg-black/50 rounded-xl overflow-hidden border border-slate-600 w-full sm:w-48 lg:w-64 h-auto">
+                        <img src={sponsor.logo} alt={sponsor.name} className="w-full h-auto object-cover sm:object-contain bg-slate-800" referrerPolicy="no-referrer" />
+                      </div>
+                    )}
+                    <div className="flex-1 flex flex-col justify-center">
+                      <span className="inline-block px-3 py-1 mb-3 text-xs font-bold tracking-wider text-indigo-300 bg-indigo-900/80 rounded-full border border-indigo-700/50 self-start">特別贊助</span>
+                      <h3 className="font-bold text-xl sm:text-3xl text-indigo-100 mb-2">{sponsor.name}</h3>
+                      {sponsor.amount && <p className="font-mono text-indigo-300 sm:text-lg mb-2">贊助金額：${sponsor.amount}</p>}
+                      {sponsor.description && <p className="leading-relaxed text-indigo-200/80 sm:text-lg">{sponsor.description}</p>}
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            ) : (
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3">
+                {category.items.map((sponsor, i) => (
+                  <motion.div 
+                    key={sponsor.id}
+                    className="bg-slate-800/80 p-3 lg:p-4 rounded-xl border border-slate-700/50 flex flex-col justify-center text-center hover:bg-slate-700/80 transition-colors"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: Math.min(i * 0.05, 0.5) }}
+                  >
+                    <div className="font-medium text-slate-200 text-sm lg:text-base mb-1">{sponsor.name}</div>
+                    {sponsor.amount && <div className="text-indigo-400 text-xs lg:text-sm font-mono mt-auto">${sponsor.amount}</div>}
+                  </motion.div>
+                ))}
+              </div>
+            )}
+          </div>
         ))}
       </div>
     </motion.div>
