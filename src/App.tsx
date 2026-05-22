@@ -6,12 +6,16 @@ import zhongImage from './assets/images/IMG_2629.jpg';
 import suImage from './assets/images/IMG_2915.jpg';
 import linImage from './assets/images/IMG_2998.jpg';
 import xieImage from './assets/images/P7170058.jpg';
+import loadingImage1 from './assets/images/IMG_2718.jpg';
+import loadingImage2 from './assets/images/P7170011.jpg';
+import loadingImage3 from './assets/images/P7170047.jpg';
+import loadingImage4 from './assets/images/P7170059.jpg';
 
 const LOADING_IMAGES = [
-  "https://picsum.photos/seed/classical/300/300",
-  "https://picsum.photos/seed/piano/300/300",
-  "https://picsum.photos/seed/violin/300/300",
-  "https://picsum.photos/seed/orchestra/300/300"
+  loadingImage1,
+  loadingImage2,
+  loadingImage3,
+  loadingImage4
 ];
 
 function LoadingSequencePage({ onNext }: { key?: string; onNext: () => void }) {
@@ -201,8 +205,16 @@ function PopupPage({ onNext }: { key?: string; onNext: () => void }) {
 // 【 頁籤一：畢業生介紹 】
 // -------------------------------------------------------------
 const GRADUATES = [
-  { id: 1, name: "林隆温", instrument: "待補", description: "林隆溫的介紹文字即將在此更新...", photo: linImage },
-  { id: 2, name: "謝菁芸", instrument: "待補", description: "謝菁芸的介紹文字即將在此更新...", photo: xieImage },
+  { id: 1, name: "林隆温", instrument: "待補", description: `aka白沙湖水怪aka超級無敵霹靂嘩啦啦下雨滴滴搭銀河系ㄅ級分愛遲到大王
+
+MBTI：MBTI是ENFP （超級大P人）常常因為時間安排不當導致不斷呈現暫時消失或東西做不完的「壯態」（對，壯烈犧牲的壯）共感偏強，所以去年別人的畢業音樂會結束後我也莫名其妙的感傷起來了（？
+
+樂器的話，主要是吹笛子/吹嗩吶/吹冷氣，反正只要吹的話都算在行（？ 有時候還是會去打擊支援，但在接任指揮之後就會在最前面的台上搖頭晃腦，曾經不停的想把指揮這個重擔丟給別人，但通常都是被拒絕一輪後又是默默撿起指揮棒（含淚`, photo: linImage },
+  { id: 2, name: "謝菁芸", instrument: "待補", description: `aka 謝鯨魚(？)
+
+MBTI：ENFP快樂小狗勾，曾經在社團事物跟太P的幹部們之中被迫成為痛苦的INFP，沒有因此成為J，所以只能更痛苦的變成會寫行程表會寫行事曆的痛苦大P人
+
+平常在社團負責搞耍跟拉住另外幾隻快樂小狗的韁繩，遊走於社團各個分部，常常自己也不知道自己要在哪AKA找不到家的小狗`, photo: xieImage },
   { id: 3, name: "蘇昱豪", instrument: "待補", description: `AKA 叢林霸主🦁
 我也不知道為什麼🤪
 貌似是因為獅子座，但獅子跟叢林的關係到底是什麼？
@@ -221,7 +233,13 @@ MBTI：ENFP(●'◡'●)
 但鍵盤真的好恐怖啊啊啊啊啊！！！
 偶爾也會跳去嗩吶組，成為一位在國樂吹北管的不稱職玩家🎺
 🎶 工阿六阿五乂仩 🎶`, photo: suImage },
-  { id: 4, name: "鍾翔蓁", instrument: "待補", description: "鍾翔蓁的介紹文字即將在此更新...", photo: zhongImage }
+  { id: 4, name: "鍾翔蓁", instrument: "待補", description: `aka 一針（不是因為講話一針見血，是因為班導一直叫我翊蓁）
+
+MBTI：INFP
+（被三位E人包夾瑟瑟發抖的I人，已經有在努力開口）
+
+主要負責二胡（緊緊抱住我唯一會的那支樂器）
+同時擔任幹話評審（這句差了一點，只有5.5分🤙）`, photo: zhongImage }
 ];
 
 function GraduatesPage({ key }: { key?: string }) {
