@@ -620,6 +620,17 @@ const NORMAL_SPONSORS = [
   "爭夯牛排館", "綺雅花苑", "YYDS手機配件", "御記烤鴨", "善心人士"
 ];
 
+const SPECIAL_SPONSORS = [
+  {
+    name: "騰風創作髮型",
+    image: "https://raw.githubusercontent.com/victor160305/115CMC/main/src/assets/images/S__255016975.jpg"
+  },
+  {
+    name: "林隆温",
+    image: "https://raw.githubusercontent.com/victor160305/115CMC/main/src/assets/images/IMG_7706.jpg"
+  }
+];
+
 function SponsorsPage({ key }: { key?: string }) {
   return (
     <motion.div 
@@ -634,6 +645,33 @@ function SponsorsPage({ key }: { key?: string }) {
         <p className="text-indigo-400 text-sm mt-1">深表謝忱 共襄盛舉</p>
       </div>
       <div className="p-6 md:px-10 flex flex-col gap-10">
+
+        <div>
+          <h3 className="text-xl font-bold text-indigo-300 mb-6 pb-2 border-b border-slate-700/50">特別贊助商</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {SPECIAL_SPONSORS.map((sponsor, i) => (
+              <motion.div 
+                key={i}
+                className="bg-slate-800/80 rounded-2xl border border-slate-700/50 overflow-hidden hover:border-slate-500 transition-colors shadow-lg shadow-black/20"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.1 }}
+              >
+                <div className="aspect-[4/3] w-full bg-slate-700 relative flex justify-center bg-black/20">
+                  <img 
+                    src={sponsor.image} 
+                    alt={sponsor.name}
+                    className="w-full h-full object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+                <div className="p-5 text-center bg-slate-800/90">
+                  <h4 className="text-xl font-bold text-slate-100">{sponsor.name}</h4>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
         
         <div>
           <h3 className="text-xl font-bold text-indigo-300 mb-4 pb-2 border-b border-slate-700/50">所有贊助名單</h3>
